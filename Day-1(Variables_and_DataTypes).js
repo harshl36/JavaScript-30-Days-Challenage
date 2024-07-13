@@ -48,7 +48,7 @@ console.log(typeof(Myself.Education));  // checked the type of a property of the
 //5
 const TechStack = ["JavaScript", "React.Js", ".Net", "Java"];
 console.log(TechStack);
-TechStack.push("HTML")     //Pushed an element in the array
+TechStack.push("HTML")     //Pushed an element into the array
 console.log(TechStack);
 
 // -----------------------------------------------------------------------
