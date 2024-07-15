@@ -106,9 +106,9 @@ GradeIs(85);
 
 // Activity 4: Conditional(Ternary) Operator
 // Task 6
-let message =
-  age >= 18 ? "You are eligible to vote" : "You are not eligible to vote";
-console.log(message);
+
+let result = num2 % 2 === 0 ? "an Even number" : "an Odd number";
+console.log(`${num2} is ${result}.`);
 
 // Activity 5: Combining Conditions
 // Task 7
