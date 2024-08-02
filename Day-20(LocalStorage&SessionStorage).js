@@ -1,5 +1,4 @@
 // Activity 1: Understanding LocalStorage
-
 // Task 1
 console.log("Task 1:");
 localStorage.setItem("myString", "Hello, LocalStorage!");
@@ -14,10 +13,10 @@ const retrievedObject = JSON.parse(localStorage.getItem("myObject"));
 console.log(retrievedObject);
 
 // Activity 2: Using LocalStorage
-
 // Task 3
+
 console.log("\nTask 3:");
-// Note: This task requires HTML. Here's a JavaScript function to handle form submission:
+
 function handleSubmit(event) {
     event.preventDefault();
     const name = document.getElementById("name").value;
@@ -25,7 +24,6 @@ function handleSubmit(event) {
     localStorage.setItem("userData", JSON.stringify({ name, email }));
 }
 
-// Display data on page load
 window.onload = function() {
     const userData = JSON.parse(localStorage.getItem("userData"));
     if (userData) {
@@ -58,7 +56,6 @@ console.log(retrievedSessionObject);
 
 // Task 7
 console.log("\nTask 7:");
-// Note: This task requires HTML. Here's a JavaScript function to handle form submission:
 function handleSessionSubmit(event) {
     event.preventDefault();
     const name = document.getElementById("sessionName").value;
