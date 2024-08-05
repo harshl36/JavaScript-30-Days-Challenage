@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VāyuVāṇī Weather App</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js"></script>
+    <link rel="icon" type="image/png" href="https://img.icons8.com/fluency/48/000000/partly-cloudy-day.png"/>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap');
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            /* background: linear-gradient(135deg, #1e2a78 0%, #ff3cac 100%); */
+            /* background: linear-gradient(135deg, #000000 0%, #7ED6DF 100%); */
+            background: linear-gradient(135deg, #649173 0%, #dbd5a4 100%);
+
+
+            min-height: 100vh;
+        }
+
+        .glass {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+        }
+
+        .weather-icon {
+            filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.5));
+        }
+
+        .glow {
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.7);
+        }
+    </style>
+</head>
+<body class="flex items-center justify-center px-4 py-8">
+    <div class="container max-w-3xl">
+        <div class="glass p-8 md:p-12">
+            <h1 class="text-5xl font-bold text-center text-white mb-8 glow">
+                Vāyu <span class="text-blue-500">Vāṇī</span>
+            </h1>
+            <div class="flex mb-6">
+                <input type="text" id="city-input" placeholder="Enter city name" class="flex-grow px-4 py-3 rounded-l-full focus:outline-none focus:ring-2 focus:ring-blue-400 bg-gray-800 text-white placeholder-gray-400">
+                <button id="search-btn" class="bg-blue-500 hover:bg-blue-600 text-white px-6 py-3 rounded-r-full transition duration-300 ease-in-out transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-blue-400">
+                    <i class="fas fa-search"></i>
+                </button>
+            </div>
+            <div id="current-weather" class="text-center mb-12 opacity-0">
+                <h2 id="city-name" class="text-4xl font-semibold text-white mb-4 glow"></h2>
+                <div class="flex justify-center items-center">
+                    <i id="weather-icon" class="text-8xl mr-6 text-yellow-300 weather-icon"></i>
+                    <div>
+                        <p id="temperature" class="text-6xl font-bold text-white glow"></p>
+                        <p id="weather-condition" class="text-2xl text-black-400 mt-2"></p>
+                    </div>
+                </div>
+            </div>
+            <div id="forecast" class="opacity-0">
+                <h3 class="text-2xl font-semibold text-white mb-6 text-center glow">5-Day Forecast</h3>
+                <div id="forecast-data" class="grid grid-cols-2 sm:grid-cols-5 gap-4"></div>
+            </div>
+        </div>
+    </div>
+    <script src="app.js"></script>
+</body>
+</html>
