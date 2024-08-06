@@ -1,0 +1,331 @@
+body {
+    font-family: 'Roboto', Arial, sans-serif;
+    background: linear-gradient(135deg, #1a202c, #2d3748);
+    color: #e2e8f0;
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    transition: background 0.5s ease;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem 1rem;
+}
+
+.title {
+    font-size: 3rem;
+    font-weight: bold;
+    color: #a78bfa;
+    text-align: center;
+    margin-bottom: 2rem;
+    animation: glow 2s ease-in-out infinite alternate;
+    text-shadow: 0 0 10px rgba(167, 139, 250, 0.5);
+}
+
+@keyframes glow {
+    from {
+        text-shadow: 0 0 5px #a78bfa, 0 0 10px #a78bfa, 0 0 15px #a78bfa;
+    }
+    to {
+        text-shadow: 0 0 10px #a78bfa, 0 0 20px #a78bfa, 0 0 30px #a78bfa;
+    }
+}
+
+.search-container {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 2rem;
+}
+
+#search-input {
+    width: 66.666667%;
+    padding: 0.75rem;
+    border-radius: 0.375rem 0 0 0.375rem;
+    background-color: rgba(45, 55, 72, 0.7);
+    color: white;
+    border: none;
+    outline: none;
+    transition: all 0.3s ease;
+}
+
+#search-input:focus {
+    box-shadow: 0 0 0 2px #7c3aed, 0 0 20px rgba(124, 58, 237, 0.5);
+    background-color: rgba(45, 55, 72, 0.9);
+}
+
+#search-button {
+    padding: 0.75rem 1rem;
+    background-color: #7c3aed;
+    color: white;
+    border: none;
+    border-radius: 0 0.375rem 0.375rem 0;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+#search-button:hover {
+    background-color: #6d28d9;
+}
+
+#search-button::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 5px;
+    height: 5px;
+    background: rgba(255, 255, 255, 0.5);
+    opacity: 0;
+    border-radius: 100%;
+    transform: scale(1, 1) translate(-50%);
+    transform-origin: 50% 50%;
+}
+
+#search-button:hover::after {
+    animation: ripple 1s ease-out;
+}
+
+@keyframes ripple {
+    0% {
+        transform: scale(0, 0);
+        opacity: 1;
+    }
+    20% {
+        transform: scale(25, 25);
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+        transform: scale(40, 40);
+    }
+}
+
+#results-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.movie-card {
+    background-color: rgba(45, 55, 72, 0.7);
+    border-radius: 0.375rem;
+    overflow: hidden;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    margin: 1rem;
+    width: 24rem;
+    position: relative;
+}
+
+.movie-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.movie-card img {
+    width: 100%;
+    height: 30rem;
+    object-fit: inherit;
+    transition: transform 0.3s ease;
+}
+
+.movie-card:hover img {
+    transform: scale(1.05);
+}
+
+.movie-info {
+    padding: 1rem;
+    background: linear-gradient(to top, rgba(45, 55, 72, 1), rgba(45, 55, 72, 0));
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    transition: all 0.3s ease;
+}
+
+.movie-card:hover .movie-info {
+    background: rgba(45, 55, 72, 0.9);
+}
+
+.movie-title {
+    font-size: 3.00rem;
+    font-weight: 600;
+    color: #fff;
+    margin-bottom: 0.5rem;
+    transition: color 0.3s ease;
+}
+
+.movie-card:hover .movie-title {
+    color: #c4b5fd;
+}
+
+.movie-date {
+    color: #a0aec0;
+    margin-bottom: 1rem;
+}
+
+.details-button {
+    background-color: #7c3aed;
+    color: white;
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 0.25rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+}
+
+.details-button:hover {
+    background-color: #6d28d9;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.details-button::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 5px;
+    height: 5px;
+    background: rgba(255, 255, 255, 0.5);
+    opacity: 0;
+    border-radius: 100%;
+    transform: scale(1, 1) translate(-50%);
+    transform-origin: 50% 50%;
+}
+
+.details-button:hover::after {
+    animation: ripple 1s ease-out;
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.75);
+    align-items: center;
+    justify-content: center;
+    backdrop-filter: blur(5px);
+}
+
+.modal-content {
+    background-color: rgba(45, 55, 72, 0.9);
+    border-radius: 0.5rem;
+    padding: 2rem;
+    max-width: 42rem;
+    width: 100%;
+    margin: 0 1rem;
+    box-shadow: 0 0 20px rgba(167, 139, 250, 0.3);
+    transition: all 0.3s ease;
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+#modal-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #a78bfa;
+    text-shadow: 0 0 10px rgba(167, 139, 250, 0.5);
+}
+
+#modal-close {
+    background: none;
+    border: none;
+    color: #a0aec0;
+    font-size: 1.5rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+#modal-close:hover {
+    color: #e2e8f0;
+    transform: rotate(90deg);
+}
+
+.movie-details {
+    display: flex;
+    flex-direction: column;
+}
+
+@media (min-width: 768px) {
+    .movie-details {
+        flex-direction: row;
+    }
+}
+
+.movie-details img {
+    width: 100%;
+    max-width: 33.333333%;
+    object-fit: cover;
+    border-radius: 0.375rem;
+    margin-bottom: 1rem;
+    transition: all 0.3s ease;
+}
+
+.movie-details img:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 20px rgba(167, 139, 250, 0.3);
+}
+
+@media (min-width: 768px) {
+    .movie-details img {
+        margin-bottom: 0;
+        margin-right: 1.5rem;
+    }
+}
+
+.movie-details-info {
+    flex: 1;
+}
+
+.movie-overview {
+    color: #e2e8f0;
+    margin-bottom: 1rem;
+    line-height: 1.6;
+}
+
+.movie-info-item {
+    color: #a0aec0;
+    margin-bottom: 0.5rem;
+    transition: all 0.3s ease;
+}
+
+.movie-info-item:hover {
+    transform: translateX(5px);
+}
+
+.movie-info-item strong {
+    color: #a78bfa;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeOut {
+    from { opacity: 1; transform: translateY(0); }
+    to { opacity: 0; transform: translateY(-20px); }
+}
+
+.animate-fadeIn {
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+.animate-fadeOut {
+    animation: fadeOut 0.5s ease-in-out;
+}
