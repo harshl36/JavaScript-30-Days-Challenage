@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sleek Chat App</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        primary: {"50":"#eff6ff","100":"#dbeafe","200":"#bfdbfe","300":"#93c5fd","400":"#60a5fa","500":"#3b82f6","600":"#2563eb","700":"#1d4ed8","800":"#1e40af","900":"#1e3a8a","950":"#172554"}
+                    }
+                },
+                fontFamily: {
+                    'body': [
+                        'Inter', 
+                        'ui-sans-serif', 
+                        'system-ui', 
+                        '-apple-system', 
+                        'system-ui', 
+                        'Segoe UI', 
+                        'Roboto', 
+                        'Helvetica Neue', 
+                        'Arial', 
+                        'Noto Sans', 
+                        'sans-serif', 
+                        'Apple Color Emoji', 
+                        'Segoe UI Emoji', 
+                        'Segoe UI Symbol', 
+                        'Noto Color Emoji'
+                    ],
+                    'sans': [
+                        'Inter', 
+                        'ui-sans-serif', 
+                        'system-ui', 
+                        '-apple-system', 
+                        'system-ui', 
+                        'Segoe UI', 
+                        'Roboto', 
+                        'Helvetica Neue', 
+                        'Arial', 
+                        'Noto Sans', 
+                        'sans-serif', 
+                        'Apple Color Emoji', 
+                        'Segoe UI Emoji', 
+                        'Segoe UI Symbol', 
+                        'Noto Color Emoji'
+                    ]
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-gray-50 dark:bg-gray-900 transition-colors duration-300 ease-in-out">
+    <div class="flex flex-col items-center justify-center min-h-screen p-4">
+        <div id="app" class="w-full max-w-md bg-white dark:bg-gray-800 rounded-xl shadow-md overflow-hidden">
+            <div id="status" class="bg-gradient-to-r from-primary-600 to-primary-800 text-white p-4 font-semibold"></div>
+            
+            <div id="login-container" class="p-6">
+                <input type="text" id="username-input" placeholder="Enter your username" class="w-full p-3 mb-4 border border-gray-300 dark:border-gray-600 rounded-lg bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-white focus:ring-primary-500 focus:border-primary-500">
+                <button id="login-button" class="w-full bg-gradient-to-r from-primary-600 to-primary-800 text-white p-3 rounded-lg hover:from-primary-700 hover:to-primary-900 transition duration-300 ease-in-out">Join Chat</button>
+            </div>
+
+            <div id="chat-container" class="hidden h-[500px] flex flex-col">
+                <div id="chat-window" class="flex-1 p-4 overflow-y-auto space-y-4"></div>
+                <div id="input-area" class="p-4 border-t border-gray-200 dark:border-gray-700">
+                    <div class="flex">
+                        <input type="text" id="message-input" placeholder="Type a message..." class="flex-1 p-3 border border-gray-300 dark:border-gray-600 rounded-l-lg bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-white focus:ring-primary-500 focus:border-primary-500">
+                        <button id="send-button" class="bg-gradient-to-r from-primary-600 to-primary-800 text-white p-3 rounded-r-lg hover:from-primary-700 hover:to-primary-900 transition duration-300 ease-in-out">Send</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <button id="theme-toggle" class="mt-4 bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-white px-4 py-2 rounded-lg hover:bg-gray-300 dark:hover:bg-gray-600 transition duration-300 ease-in-out">
+            Change Mode
+        </button>
+    </div>
+    <script src="app.js"></script>
+</body>
+</html>
