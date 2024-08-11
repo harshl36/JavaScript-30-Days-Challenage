@@ -17,6 +17,17 @@ body {
     min-height: 100vh;
     display: flex;
     flex-direction: column;
+    transition: background 0.3s ease;
+}
+
+.light-mode {
+    --bg-gradient: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+    --text-color: #333;
+    --primary-color: #3498db;
+    --secondary-color: #2980b9;
+    --accent-color: #e74c3c;
+    --post-bg: rgba(255, 255, 255, 0.8);
+    --post-border: rgba(0, 0, 0, 0.1);
 }
 
 header {
@@ -47,24 +58,45 @@ h1 {
 }
 
 main {
-    max-width: 800px;
-    margin: 2rem auto;
+    max-width: 1200px;
     padding: 0 1rem;
     flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    margin: 2rem auto;
+    align-items: center;
 }
 
-form {
+#authSection, #profileSection {
     background-color: var(--post-bg);
-    padding: 1.5rem;
+    padding: 2rem;
     border-radius: 8px;
     box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-    margin-bottom: 2rem;
+    animation: fadeIn 0.5s ease;
+    width: 400px;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+#postForm {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    align-items: normal;
+}
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
 }
 
 input, textarea {
-    width: 95%;
+    width: 90%;
     padding: 0.75rem;
-    margin-bottom: 1rem;
     border: 1px solid var(--post-border);
     border-radius: 4px;
     background-color: rgba(255, 255, 255, 0.05);
@@ -75,7 +107,7 @@ input, textarea {
 input:focus, textarea:focus {
     outline: none;
     border-color: var(--accent-color);
-    box-shadow: 0 0 0 2px rgba(233, 69, 96, 0.2);
+    box-shadow: 0 0 0 2px rgba(99, 226, 245, 0.2);
 }
 
 button {
@@ -86,28 +118,77 @@ button {
     border-radius: 4px;
     cursor: pointer;
     transition: all 0.3s ease;
+    margin-top: 10px;
+}
+.authBtn {
+    background-color: var(--accent-color);
+    color: black;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 10px;
+    width: 200px;
 }
 
 button:hover {
-    background-color: #d63851;
+    background-color: #45a9b9;
     transform: translateY(-2px);
 }
 
-.create-post {
-    margin-bottom: 2rem;
+.dashboard-container {
+    display: flex;
+    gap: 2rem;
+}
+
+.sidebar {
+    flex: 1;
+    background-color: var(--post-bg);
+    padding: 1rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+.main-content {
+    flex: 3;
+    width: 1000px;
 }
 
 .user-info {
     display: flex;
+    flex-direction: column;
     align-items: center;
     margin-bottom: 1rem;
 }
 
 .user-info img {
-    width: 40px;
-    height: 40px;
+    width: 50px;
+    height: 50px;
     border-radius: 50%;
-    margin-right: 1rem;
+    /* margin-right: 1rem; */
+}
+.user-details {
+    text-align: center;
+    margin: 0.5rem 0;
+}
+
+.user-details span {
+    display: block;
+    margin-bottom: 0.25rem;
+}
+
+#editProfileBtn {
+    width: 100%;
+    margin-top: 0.5rem;
+}
+.create-post {
+    background-color: var(--post-bg);
+    padding: 1rem;
+    border-radius: 8px;
+    margin-bottom: 2rem;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    width: 500px;
 }
 
 .post {
@@ -118,12 +199,12 @@ button:hover {
     border-radius: 8px;
     box-shadow: 0 4px 15px rgba(0,0,0,0.1);
     transition: transform 0.3s ease;
-    animation: fadeIn 0.5s ease;
+    animation: slideIn 0.5s ease;
 }
 
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
+@keyframes slideIn {
+    from { opacity: 0; transform: translateX(-20px); }
+    to { opacity: 1; transform: translateX(0); }
 }
 
 .post:hover {
@@ -138,6 +219,7 @@ button:hover {
 
 .post-header {
     display: flex;
+    justify-content: space-between;
     align-items: center;
     margin-bottom: 1rem;
 }
@@ -154,14 +236,45 @@ button:hover {
     justify-content: space-between;
     margin-top: 1rem;
 }
-
-.post-actions button {
-    flex: 1;
-    margin-right: 0.5rem;
-    font-size: 0.9rem;
-    padding: 0.5rem;
+.post-header-left {
+    display: flex;
+    align-items: center;
 }
 
+.post-options-toggle {
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    padding: 0;
+}
+
+.post-options {
+    position: absolute;
+    right: 0;
+    top: 100%;
+    background-color: var(--post-bg);
+    border: 1px solid var(--post-border);
+    border-radius: 4px;
+    padding: 0.5rem;
+    display: none;
+    z-index: 10;
+}
+
+.post-options button {
+    display: block;
+    width: 100%;
+    text-align: left;
+    padding: 0.5rem;
+    background: none;
+    border: none;
+    color: var(--text-color);
+    cursor: pointer;
+}
+
+.post-options button:hover {
+    background-color: var(--secondary-color);
+}
 .timestamp {
     font-size: 0.8rem;
     color: #888;
@@ -184,4 +297,48 @@ label[for="postImage"] {
 
 label[for="postImage"]:hover {
     background-color: #1e2a4a;
+}
+
+.notification {
+    background-color: var(--accent-color);
+    color: black;
+    padding: 0.5rem 1rem;
+    margin-bottom: 0.5rem;
+    border-radius: 4px;
+    animation: fadeIn 0.5s ease;
+}
+
+#profileSection img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    margin-bottom: 1rem;
+}
+
+.comments-section {
+    margin-top: 1rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--post-border);
+}
+
+.current-user-post {
+    border: 2px solid var(--accent-color);
+}
+
+@media (max-width: 768px) {
+    .dashboard-container {
+        flex-direction: column;
+    }
+    
+    .sidebar, .main-content {
+        width: 100%;
+    }
+}
+#deletepost{
+    margin-left: 10px;
+    color: white;
+    background: rgb(193, 22, 22);
+}
+hr{
+    margin-top: 50px;
 }

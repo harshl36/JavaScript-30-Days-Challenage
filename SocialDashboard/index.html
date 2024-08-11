@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NexusConnect</title>
+    <title>MySpace</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
 </head>
@@ -14,32 +14,65 @@
     </header>
 
     <main>
-        <section id="loginSection">
-            <h2>Welcome to MySpace</h2>
+        <h2>Welcome to MySpace</h2>
+        <section id="authSection">
+            <h3>Login</h3>
             <form id="loginForm">
-                <input type="text" id="username" placeholder="Username" required>
-                <input type="password" id="password" placeholder="Password" required>
-                <button type="submit">Login</button>
+                <input type="text" id="loginUsername" placeholder="Username" required>
+                <input type="password" id="loginPassword" placeholder="Password" required>
+                <button type="submit" class="authBtn">Login</button>
+            </form>
+            <hr color="#63e2f5" >
+            <h3>Register</h3>
+            <form id="registerForm">
+                <input type="text" id="registerUsername" placeholder="Username" required>
+                <input type="email" id="registerEmail" placeholder="Email" required>
+                <input type="password" id="registerPassword" placeholder="Password" required>
+                <button type="submit" class="authBtn">Register</button>
             </form>
         </section>
 
         <section id="dashboard" style="display: none;">
-            <div class="create-post">
-                <form id="postForm">
+            <div class="dashboard-container">
+                <aside class="sidebar">
                     <div class="user-info">
                         <img id="currentUserAvatar" src="default-avatar.png" alt="User Avatar">
-                        <span id="currentUsername"></span>
+                        <div class="user-details">
+                            <span id="currentUsername"></span>
+                            <span id="currentUserEmail"></span>
+                        </div>
+                        <button id="editProfileBtn">Edit Profile</button>
                     </div>
-                    <textarea id="postText" placeholder="What's on your mind?" required></textarea>
-                    <div class="post-actions">
-                        <input type="file" id="postImage" accept="image/*">
-                        <label for="postImage">📷 Add Photo</label>
-                        <button type="submit">Post</button>
-                    </div>
-                </form>
-            </div>
+                    <div id="notificationArea"></div>
+                </aside>
 
-            <div id="postFeed"></div>
+                <div class="main-content">
+                    <div class="create-post">
+                        <form id="postForm">
+                            <textarea id="postText" placeholder="What's on your mind?" required></textarea>
+                            <div class="post-actions">
+                                <input type="file" id="postImage" accept="image/*">
+                                <label for="postImage">📷 Add Photo</label>
+                                <button type="submit">Post</button>
+                            </div>
+                        </form>
+                    </div>
+
+                    <div id="postFeed"></div>
+                </div>
+            </div>
+        </section>
+
+        <section id="profileSection" style="display: none;">
+            <h2>Edit Profile</h2>
+            <form id="profileForm">
+                <img id="profileAvatar" src="" alt="User Avatar">
+                <input type="text" id="profileUsername" readonly>
+                <input type="email" id="profileEmail" required>
+                <input type="file" id="profileAvatarUpload" accept="image/*">
+                <button type="submit">Update Profile</button>
+            </form>
+            <button id="backToDashboardBtn">Back to Dashboard</button>
         </section>
     </main>
 
